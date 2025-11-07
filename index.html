@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  ```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конные клубы Москвы и Московской Области</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #8B4513, #A0522D);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background-color: #654321;
+      padding: 1rem 0;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 1rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      color: #8B4513;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.5rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .filter-group label {
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #654321;
+    }
+
+    .filter-group select {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: white;
+    }
+
+    .clubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .club-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .club-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .club-image {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .club-info {
+      padding: 1.5rem;
+    }
+
+    .club-info h3 {
+      color: #8B4513;
+      margin-bottom: 0.5rem;
+    }
+
+    .club-info p {
+      margin-bottom: 0.5rem;
+      color: #666;
+    }
+
+    .club-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .feature-tag {
+      background-color: #f0f0f0;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #654321;
+    }
+
+    .club-detail {
+      display: none;
+    }
+
+    .club-detail.active {
+      display: block;
+    }
+
+    .back-button {
+      display: inline-block;
+      background-color: #8B4513;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #654321;
+    }
+
+    .club-detail-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .club-detail-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .club-detail-header h2 {
+      color: #8B4513;
+      font-size: 2rem;
+    }
+
+    .club-detail-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .club-detail-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .club-detail-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .info-section h3 {
+      color: #8B4513;
+      margin-bottom: 1rem;
+    }
+
+    .info-section ul {
+      list-style-type: none;
+    }
+
+    .info-section ul li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    footer {
+      background-color: #654321;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .clubs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .club-detail-info {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Конные клубы Москвы</h1>
+    <p>Найдите идеальный конный клуб для вас и вашей лошади</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showSection('home')">О сайте</a></li>
+      <li><a href="#" onclick="showSection('clubs')">База клубов</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <!-- Главная страница -->
+    <div id="home" class="section">
+      <h2>О нашем сайте</h2>
+      <p>Добро пожаловать на сайт "Конные клубы Москвы" - ваш надежный гид в мире конного спорта и отдыха в столице!</p>
+
+      <h3>Для чего создан этот сайт?</h3>
+      <p>Наш сайт создан для того, чтобы помочь любителям лошадей и конного спорта найти подходящий конный клуб в Москве. Мы понимаем, что выбор клуба - это важное решение, которое зависит от множества факторов.</p>
+
+      <h3>Что вы найдете на сайте?</h3>
+      <ul>
+        <li>Полную базу конных клубов Москвы с подробной информацией о каждом</li>
+        <li>Возможность фильтрации клубов по различным параметрам</li>
+        <li>Фотографии и описания инфраструктуры каждого клуба</li>
+        <li>Информацию о предоставляемых услугах и видах деятельности</li>
+        <li>Контакты и расположение каждого клуба</li>
+      </ul>
+
+      <h3>Кому будет полезен этот сайт?</h3>
+      <p>Наш ресурс будет полезен как опытным наездникам, так и новичкам, которые только начинают свой путь в мире конного спорта. Владельцы лошадей найдут здесь информацию о клубах, предоставляющих услуги постоя, а спортсмены - клубы с профессиональными тренировками.</p>
+
+      <p>Мы постоянно обновляем нашу базу данных и добавляем новые клубы, чтобы предоставлять вам самую актуальную информацию.</p>
+
+      <a href="#" class="back-button" onclick="showSection('clubs')">Перейти к базе клубов</a>
+    </div>
+
+    <!-- Список клубов -->
+    <div id="clubs" class="section" style="display: none;">
+      <h2>База конных клубов Москвы</h2>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label for="boarding">Постой</label>
+          <select id="boarding">
+            <option value="all">Все</option>
+            <option value="yes">Есть постой</option>
+            <option value="no">Нет постоя</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="showjumping">Конкур</label>
+          <select id="showjumping">
+            <option value="all">Все</option>
+            <option value="yes">Есть конкур</option>
+            <option value="no">Нет конкура</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="dressage">Выездка</label>
+          <select id="dressage">
+            <option value="all">Все</option>
+            <option value="yes">Есть выездка</option>
+            <option value="no">Нет выездки</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="walking">Выгул</label>
+          <select id="walking">
+            <option value="all">Все</option>
+            <option value="yes">Больше 5 часов</option>
+            <option value="no">Меньше 5 часов</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="training">Обучение</label>
+          <select id="training">
+            <option value="all">Все</option>
+            <option value="yes">Есть обучение</option>
+            <option value="no">Нет обучения</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="rental">Аренда лошадей</label>
+          <select id="rental">
+            <option value="all">Все</option>
+            <option value="yes">Есть аренда</option>
+            <option value="no">Нет аренды</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="clubs-grid" id="clubsContainer">
+        <!-- Клубы будут загружены через JavaScript -->
+      </div>
+    </div>
+
+    <!-- Детальная страница клуба -->
+    <div id="clubDetail" class="section club-detail">
+      <!-- Контент будет загружен через JavaScript -->
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Конные клубы Москвы. Все права защищены.</p>
+    <p>Контакты: info@horsemoscow.ru | +7 (495) 123-45-67</p>
+  </footer>
+
+  <script>
+    // Данные о конных клубах
+    const horseClubs = [{
+        id: 1,
+        name: "КСК  'Новый Век'",
+        description: "КСК «Новый Век» — современный конный спортивный комплекс с профессиональными тренерами и уютной атмосферой. Здесь сочетаются комфорт для лошадей, качественные тренировки и живописные маршруты для прогулок.",
+        image: "https://i.postimg.cc/Y08889YC/image.png",
+        images: [
+          "https://i.postimg.cc/Y08889YC/image.png",
+          "https://i.postimg.cc/wBcNDrhp/image.png",
+          "https://i.postimg.cc/vBZ4fZYz/image.png"
+        ],
+        features: {
+          boarding: true,
+          showjumping: true,
+          dressage: true,
+          walking: false,
+          training: true,
+          rental: true
+        },
+        address: "д. Поздняково, территория Конно-спортивный комплекс Новый век, вл1",
+        phone: "+7 (495) 994-86-10",
+        email: "goldenhorseshoe@mail.ru",
+        website: "https://newcentury.ru/",
+        services: ["Постой лошадей", "Конкурные тренировки", "Выездка", "Прогулки верхом", "Обучение верховой езде", "Аренда лошадей"],
+        descriptionFull: "Конно-спортивный клуб «Новый Век» — это современный центр конного спорта, сочетающий профессиональный подход, уютную атмосферу и внимание к каждой детали. В клубе созданы идеальные условия для тренировок спортсменов любого уровня — от новичков до мастеров спорта. На территории есть крытый и открытый манежи, просторные денники, поля для  выездки и конкура, а также зона отдыха для посетителей. Особое внимание уделяется комфорту и благополучию лошадей: ежедневный выгул, сбалансированное кормление и ветеринарное сопровождение. Для гостей клуба проводятся обучающие программы, фотосессии и прогулки верхом по живописным маршрутам. «Новый Век» — это место, где традиции конного спорта соединяются с современным уровнем сервиса и заботой о каждом всаднике и лошади."
+      },
+      {
+        id: 2,
+        name: "КСК 'Виват, Россия!'",
+        description: "Спортивный конный клуб с патриотическим духом, сильной спортивной школой и вниманием к традициям российского конного дела.",
+        image: "https://i.postimg.cc/Mpc2M22N/image.png",
+        images: [
+          "https://i.postimg.cc/Mpc2M22N/image.png",
+          "https://i.postimg.cc/2SLMjQnq/image.png",
+          "https://i.postimg.cc/661M77WZ/image.png"
+        ],
+        features: {
+          boarding: true,
+          showjumping: true,
+          dressage: true,
+          walking: false,
+          training: true,
+          rental: true
+        },
+        address: "Московская область, Ленинский городской округ, сельское поселение Молоковское",
+        phone: "+7 (495) 234-56-78",
+        email: "stepnoyveter@mail.ru",
+        website: "https://avdeyka.tilda.ws/page98234-2",
+        services: ["Постой лошадей", "Прогулки верхом", "Обучение верховой езде", "Аренда лошадей", "Детские занятия"],
+        descriptionFull: "КСК «Виват, Россия!» — это место, где конный спорт встречается с национальными традициями и командным духом. Клуб объединяет профессионалов и любителей, предлагая занятия по выездке и конкуру, а также программы для детей и начинающих всадников. Тренеры клуба — мастера спорта и действующие участники соревнований, что позволяет ученикам быстро прогрессировать и участвовать в турнирах различного уровня. На территории клуба расположены современные конюшни, крытый и открытый манежи, поля для тренировок, зона отдыха и кафе. Особая атмосфера патриотизма и уважения к истории российского конного спорта делает «Виват, Россия!» уникальным местом для тех, кто хочет расти, побеждать и любить лошадей. Здесь царит дух сплочённости, уважения к лошади и гордости за отечественные спортивные достижения."
+      },
+      {
+        id: 3,
+        name: "Спортивный клуб 'Аллюр'",
+        description: "Профессиональный клуб для серьезных занятий конным спортом с опытными тренерами.",
+        image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8cd0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1517486808906-6ca8b3f8cd0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1570042225831-d98fa757b09b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+        ],
+        features: {
+          boarding: true,
+          showjumping: true,
+          dressage: true,
+          walking: false,
+          training: true,
+          rental: false
+        },
+        address: "Москва, ул. Спортивная, д. 28",
+        phone: "+7 (495) 345-67-89",
+        email: "allurclub@mail.ru",
+        website: "www.allurclub.ru",
+        services: ["Постой лошадей", "Конкурные тренировки", "Выездка", "Профессиональное обучение", "Подготовка к соревнованиям"],
+        descriptionFull: "Спортивный клуб 'Аллюр' - это профессиональная площадка для серьезных занятий конным спортом. Наши тренеры - мастера спорта и опытные специалисты, которые помогут вам достичь высоких результатов в конкуре и выездке. Мы готовим спортсменов к соревнованиям различного уровня и предоставляем все необходимое для эффективных тренировок: современные манежи, качественный инвентарь и ухоженных лошадей спортивных пород."
+      },
+      {
+        id: 4,
+        name: "Конный клуб 'Русская Тройка'",
+        description: "Клуб с традициями, специализирующийся на русских породах лошадей и национальных видах езды.",
+        image: "https://images.unsplash.com/photo-1570042225831-d98fa757b09b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1570042225831-d98fa757b09b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1504173010664-325b5d8c8a2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+        ],
+        features: {
+          boarding: true,
+          showjumping: false,
+          dressage: false,
+          walking: true,
+          training: true,
+          rental: true
+        },
+        address: "Москва, ш. Тройское, д. 33",
+        phone: "+7 (495) 456-78-90",
+        email: "russkayatroyka@mail.ru",
+        website: "www.russkayatroyka.ru",
+        services: ["Постой лошадей", "Прогулки верхом", "Обучение верховой езде", "Аренда лошадей", "Тройки и упряжки", "Фольклорные программы"],
+        descriptionFull: "Конный клуб 'Русская Тройка' хранит традиции русской конной культуры. Мы специализируемся на русских породах лошадей и предлагаем уникальные программы, включающие езду в тройках и других традиционных упряжках. Наш клуб - это не только место для занятий верховой ездой, но и культурный центр, где вы можете погрузиться в атмосферу русских традиций, принять участие в фольклорных программах и праздниках."
+      },
+      {
+        id: 5,
+        name: "Эко-клуб 'Лесная Сказка'",
+        description: "Экологичный клуб на окраине Москвы с обширными лесными маршрутами для верховых прогулок.",
+        image: "https://images.unsplash.com/photo-1553284965-5dd835bc25e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1553284965-5dd835bc25e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1504173010664-325b5d8c8a2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1570042225831-d98fa757b09b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+        ],
+        features: {
+          boarding: false,
+          showjumping: false,
+          dressage: false,
+          walking: true,
+          training: true,
+          rental: true
+        },
+        address: "Москва, Лесной проезд, д. 7",
+        phone: "+7 (495) 567-89-01",
+        email: "lesnayaskazka@mail.ru",
+        website: "www.lesnayaskazka.ru",
+        services: ["Прогулки верхом", "Обучение верховой езде", "Аренда лошадей", "Экологические маршруты", "Фотосессии"],
+        descriptionFull: "Эко-клуб 'Лесная Сказка' расположен на живописной окраине Москвы, в окружении лесов и полей. Мы предлагаем уникальную возможность насладиться верховой ездой на природе, вдали от городской суеты. Наши маршруты проложены через самые красивые уголки Подмосковья, а спокойные и обученные лошади подойдут даже для начинающих наездников. Мы уделяем особое внимание экологическому подходу и заботе о природе."
+      },
+      {
+        id: 6,
+        name: "Конный клуб 'Золотая Подкова'",
+        description: "Элитный конный клуб с современной инфраструктурой и профессиональными тренерами.",
+        image: "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1517486808906-6ca8b3f8cd0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1570042225831-d98fa757b09b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+        ],
+        features: {
+          boarding: true,
+          showjumping: true,
+          dressage: true,
+          walking: true,
+          training: true,
+          rental: true
+        },
+        address: "Москва, ул. Конная, д. 15",
+        phone: "+7 (495) 123-45-67",
+        email: "goldenhorseshoe@mail.ru",
+        website: "www.goldenhorseshoe.ru",
+        services: ["Постой лошадей", "Конкурные тренировки", "Выездка", "Прогулки верхом", "Обучение верховой езде", "Аренда лошадей"],
+        descriptionFull: "Конный клуб 'Золотая Подкова' - это современный комплекс для занятий конным спортом и отдыха. Мы предлагаем полный спектр услуг для любителей лошадей: от обучения верховой езде для начинающих до профессиональных тренировок по конкуру и выездке. На территории клуба расположены просторные конюшни, крытый манеж, открытые плацы и комфортабельная зона отдыха."
+      }
+    ];
+    // Функция для отображения секций
+    function showSection(sectionId) {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('clubs').style.display = 'none';
+      document.getElementById('clubDetail').style.display = 'none';
+      document.getElementById('clubDetail').classList.remove('active');
+      if (sectionId === 'home') {
+        document.getElementById('home').style.display = 'block';
+      } else if (sectionId === 'clubs') {
+        document.getElementById('clubs').style.display = 'block';
+        renderClubs(horseClubs);
+      }
+    }
+    // Функция для отображения списка клубов
+    function renderClubs(clubs) {
+      const container = document.getElementById('clubsContainer');
+      container.innerHTML = '';
+      clubs.forEach(club => {
+        const card = document.createElement('div');
+        card.className = 'club-card';
+        card.onclick = () => showClubDetail(club.id);
+        let featuresHtml = '';
+        if (club.features.boarding) featuresHtml += '<span class="feature-tag">Постой</span>';
+        if (club.features.showjumping) featuresHtml += '<span class="feature-tag">Конкур</span>';
+        if (club.features.dressage) featuresHtml += '<span class="feature-tag">Выездка</span>';
+        if (club.features.walking) featuresHtml += '<span class="feature-tag">Выгул >5ч</span>';
+        if (club.features.training) featuresHtml += '<span class="feature-tag">Обучение</span>';
+        if (club.features.rental) featuresHtml += '<span class="feature-tag">Аренда</span>';
+        card.innerHTML = `
+<img src="${club.image}" alt="${club.name}" class="club-image">
+<div class="club-info">
+<h3>${club.name}</h3>
+<p>${club.description}</p>
+<p><strong>Адрес:</strong> ${club.address}</p>
+<div class="club-features">
+${featuresHtml}
+</div>
+</div>
+`;
+        container.appendChild(card);
+      });
+    }
+    // Функция для отображения детальной информации о клубе
+    function showClubDetail(clubId) {
+      const club = horseClubs.find(c => c.id === clubId);
+      if (!club) return;
+      const detailSection = document.getElementById('clubDetail');
+      detailSection.innerHTML = '';
+      let servicesHtml = '';
+      club.services.forEach(service => {
+        servicesHtml += `<li>${service}</li>`;
+      });
+      let imagesHtml = '';
+      club.images.forEach(image => {
+        imagesHtml += `<img src="${image}" alt="${club.name}" class="club-detail-image">`;
+      });
+      detailSection.innerHTML = `
+<a href="#" class="back-button" onclick="showSection('clubs')">← Назад к списку клубов</a>
+<div class="club-detail-content">
+<div class="club-detail-header">
+<h2>${club.name}</h2>
+<p>${club.descriptionFull}</p>
+</div>
+
+<div class="club-detail-images">
+${imagesHtml}
+</div>
+
+<div class="club-detail-info">
+<div class="info-section">
+<h3>Услуги</h3>
+<ul>
+${servicesHtml}
+</ul>
+</div>
+
+<div class="info-section">
+<h3>Контакты</h3>
+<ul>
+<li><strong>Адрес:</strong> ${club.address}</li>
+<li><strong>Телефон:</strong> ${club.phone}</li>
+<li><strong>Email:</strong> ${club.email}</li>
+<li><strong>Сайт:</strong> ${club.website}</li>
+</ul>
+</div>
+</div>
+</div>
+`;
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('clubs').style.display = 'none';
+      detailSection.style.display = 'block';
+      detailSection.classList.add('active');
+    }
+    // Функция для фильтрации клубов
+    function filterClubs() {
+      const boardingFilter = document.getElementById('boarding').value;
+      const showjumpingFilter = document.getElementById('showjumping').value;
+      const dressageFilter = document.getElementById('dressage').value;
+      const walkingFilter = document.getElementById('walking').value;
+      const trainingFilter = document.getElementById('training').value;
+      const rentalFilter = document.getElementById('rental').value;
+      const filteredClubs = horseClubs.filter(club => {
+        if (boardingFilter !== 'all' && club.features.boarding !== (boardingFilter === 'yes')) return false;
+        if (showjumpingFilter !== 'all' && club.features.showjumping !== (showjumpingFilter === 'yes')) return false;
+        if (dressageFilter !== 'all' && club.features.dressage !== (dressageFilter === 'yes')) return false;
+        if (walkingFilter !== 'all' && club.features.walking !== (walkingFilter === 'yes')) return false;
+        if (trainingFilter !== 'all' && club.features.training !== (trainingFilter === 'yes')) return false;
+        if (rentalFilter !== 'all' && club.features.rental !== (rentalFilter === 'yes')) return false;
+        return true;
+      });
+      renderClubs(filteredClubs);
+    }
+    // Инициализация фильтров
+    document.getElementById('boarding').addEventListener('change', filterClubs);
+    document.getElementById('showjumping').addEventListener('change', filterClubs);
+    document.getElementById('dressage').addEventListener('change', filterClubs);
+    document.getElementById('walking').addEventListener('change', filterClubs);
+    document.getElementById('training').addEventListener('change', filterClubs);
+    document.getElementById('rental').addEventListener('change', filterClubs);
+    // Показываем главную страницу при загрузке
+    window.onload = () => showSection('home');
+  </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>
